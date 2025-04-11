@@ -3,3 +3,10 @@ dummy:
     _target_: llava.data.DummyDataset
     num_instances: 10000
     comments: dummy dataset for testing
+
+
+EmoStim:
+    _target_: llava.data.LLaVADataset
+    data_path: /storage/ice1/6/7/ychen3302/EmoStimDS/dataset.json
+    media_dir: /storage/ice1/6/7/ychen3302/EmoStimDS
+    is_video: true

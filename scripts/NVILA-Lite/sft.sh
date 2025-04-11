@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DEFAULT_RUN_NAME="vila-qwen2-vl-7b-sft"
-DEFAULT_GLOBAL_TRAIN_BATCH_SIZE=2048
-DEFAULT_GRADIENT_ACCUMULATION_STEPS=2
+DEFAULT_RUN_NAME=${DEFAULT_RUN_NAME:-"vila-qwen2-vl-7b-sft"}
+DEFAULT_GLOBAL_TRAIN_BATCH_SIZE=${DEFAULT_GLOBAL_TRAIN_BATCH_SIZE:-2048}
+DEFAULT_GRADIENT_ACCUMULATION_STEPS=${DEFAULT_GRADIENT_ACCUMULATION_STEPS:-2}
 
 STAGE_PATH=${1:-"runs/train/nvila-8b-pretrain/model"}
 DATA_MIXTURE=${2:-"nvila-pretrain"}
@@ -35,9 +35,7 @@ torchrun \
         --per_device_train_batch_size $PER_DEVICE_TRAIN_BATCH_SIZE \
         --gradient_accumulation_steps $GRADIENT_ACCUMULATION_STEPS \
         --evaluation_strategy no \
-        --save_strategy steps \
-        --save_steps 100 \
-        --save_total_limit 1 \
+        --save_strategy no \
         --learning_rate 2e-5 \
         --weight_decay 0. \
         --warmup_ratio 0.03 \
